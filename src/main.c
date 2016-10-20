@@ -64,6 +64,7 @@ void place(int x, int y, int z)
 void done()
 {
     printf("OK\n");
+    fflush(stdout);
 }
 
 void turn(int x, int y)
@@ -73,6 +74,7 @@ void turn(int x, int y)
     // AI
     struct Position pos = ai(board, ME);
     printf("%d %d\n", pos.x, pos.y);
+    fflush(stdout);
 }
 
 void end(x)
