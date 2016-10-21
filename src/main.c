@@ -35,7 +35,7 @@ void debug(const char *str)
 
 /*
  * YOUR CODE BEGIN
- * 你的代码开始
+ * ��Ĵ��뿪ʼ
  */
  
 /* 
