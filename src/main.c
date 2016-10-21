@@ -27,7 +27,26 @@ struct Position
 char buffer[MAX_BYTE] = {0};
 char board[BOARD_SIZE][BOARD_SIZE] = {0};
 
-struct Position ai(const char board[BOARD_SIZE][BOARD_SIZE], int me)
+void debug(const char *str)
+{
+	printf("DEBUG %s\n", str);
+	fflush(stdout);
+}
+
+/*
+ * YOUR CODE BEGIN
+ */
+ 
+/* 
+ * You can define your own struct and variable here
+ */
+ 
+void start()
+{
+    memset(board, 0, sizeof(board));
+}
+
+struct Position begin(const char board[BOARD_SIZE][BOARD_SIZE], int me)
 {
     /*
      * TODO: Write your own ai here!
@@ -51,10 +70,33 @@ struct Position ai(const char board[BOARD_SIZE][BOARD_SIZE], int me)
     return preferedPos;
 }
 
-void start()
+struct Position ai(const char board[BOARD_SIZE][BOARD_SIZE], int me, int otherX, int otherY)
 {
-    memset(board, 0, sizeof(board));
+    /*
+     * TODO: Write your own ai here!
+     * Here is a simple ai which just put chess at empty position!
+     */
+    int i, j;
+    struct Position preferedPos;
+    
+    for (i = 0; i < BOARD_SIZE; i++)
+        for (j = 0; j < BOARD_SIZE; j++)
+        {
+            if (EMPTY == board[i][j])
+            {
+                preferedPos.x = i;
+                preferedPos.y = j;
+                return preferedPos;
+            }
+        }
+    
+    
+    return preferedPos;
 }
+
+/*
+ * YOUR CODE END
+ */
 
 void place(int x, int y, int z)
 {
@@ -72,7 +114,7 @@ void turn(int x, int y)
     board[x][y] = OTHER;
     
     // AI
-    struct Position pos = ai(board, ME);
+    struct Position pos = ai(board, ME, x, y);
     printf("%d %d\n", pos.x, pos.y);
     fflush(stdout);
 }
@@ -104,6 +146,13 @@ void loop()
         {
             done();
         }
+        else if (strstr(buffer, BEGIN))
+        {
+    		// AI
+    		struct Position pos = begin(board, ME);
+    		printf("%d %d\n", pos.x, pos.y);
+    		fflush(stdout);
+		}
         else if (strstr(buffer, TURN))
         {
             char tmp[MAX_BYTE] = {0};
