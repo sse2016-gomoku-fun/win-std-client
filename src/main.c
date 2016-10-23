@@ -156,7 +156,7 @@ void turn(int x, int y)
     fflush(stdout);
 }
 
-void end(x)
+void end(int x)
 {
     
 }
