@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define BOARD_SIZE 20
 #define EMPTY 0
@@ -149,7 +150,8 @@ void turn(int x, int y)
     board[x][y] = OTHER;
     
     // AI
-    struct Position pos = aiTurn(board, ME, x, y);
+    struct Position pos = aiTurn((const char (*)[20])board, ME, x, y);
+    board[pos.x][pos.y] = ME;
     printf("%d %d\n", pos.x, pos.y);
     fflush(stdout);
 }
@@ -184,7 +186,8 @@ void loop()
         else if (strstr(buffer, BEGIN))
         {
     		// AI
-    		struct Position pos = aiBegin(board, ME);
+    		struct Position pos = aiBegin((const char (*)[20])board, ME);
+    		board[pos.x][pos.y] = ME;
     		printf("%d %d\n", pos.x, pos.y);
     		fflush(stdout);
 		}
