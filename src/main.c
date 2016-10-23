@@ -166,7 +166,7 @@ void loop()
     while (TRUE)
     {
         memset(buffer, 0, sizeof(buffer));
-        scanf("%s", buffer);
+        gets(buffer);
         
         if (strstr(buffer, START))
         {
